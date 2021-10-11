@@ -20,7 +20,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="proses_login.php" id="login" name="login" method="post">
+            <form action="<?= base_url('login/check') ?>" id="login" name="login" method="post">
               <h1>Login Admin</h1>
               <div class="form-group has-feedback">
                 <input type="text" id="username" name="username_admin" class="form-control" autocomplete="off" maxlength="50" placeholder="Username" required="username" />
@@ -31,7 +31,7 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
               </div>
               <div>
-                <a href="../../index.php"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</button></a>
+                <a href="<?= base_url() ?>"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</button></a>
                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span> Masuk</button>
               </div>
 

@@ -4,7 +4,7 @@
 // $query  	= mysqli_query($db, $sql);
 // $data 		= mysqli_fetch_array($query);
 
-$sql = $this->db->query("SELECT * FROM tb_admin where id_admin='1'");
+$sql = $this->db->query("SELECT * FROM tb_admin where id_admin='".$_SESSION['id']."'");
 $data = $sql->row_array();
 ?>
         <div class="top_nav">
@@ -22,7 +22,7 @@ $data = $sql->row_array();
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="profile.php"><i class="fa fa-user pull-right"></i> Profil</a></li>
-                    <li><a href="../koneksi/proses_logout.php"><i class="fa fa-sign-out pull-right" onclick="return confirm ('Apakah Anda Akan Keluar.?');"></i> Keluar</a></li>
+                    <li><a href="<?= base_url('login/logout')?>"><i class="fa fa-sign-out pull-right" onclick="return confirm ('Apakah Anda Akan Keluar.?');"></i> Keluar</a></li>
                   </ul>
                 </li>
               </ul>

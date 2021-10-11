@@ -1,5 +1,5 @@
 <?php
-			$sql  		= $this->db->query("SELECT * FROM tb_admin where id_admin='1'");                        
+			$sql  		= $this->db->query("SELECT * FROM tb_admin where id_admin='".$_SESSION['id']."'");                        
 			$data 		= $sql->row_array();
 ?>
         <div class="col-md-3 left_col">
@@ -17,7 +17,7 @@
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,</span>
-                <h2>Rafli</h2>
+                <h2><?= $_SESSION['nama']; ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
