@@ -36,6 +36,23 @@
     <script src="<?=base_url('assets/vendors/moment/min/moment.min.js')?>"></script>
     <script src="<?=base_url('assets/vendors/bootstrap-daterangepicker/daterangepicker.js')?>"></script>
 
+    <!-- Datatables -->
+    <script src="<?= base_url('assets/vendors/datatables.net/js/jquery.dataTable') ?>s.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-bs/js/dataTables.bootstra') ?>p.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-buttons/js/dataTables.button') ?>s.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-buttons-bs/js/buttons.bootstra') ?>p.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-buttons/js/buttons.flas') ?>h.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-buttons/js/buttons.html') ?>5.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-buttons/js/buttons.prin') ?>t.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-fixedheader/js/dataTables.fixedHeade') ?>r.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-keytable/js/dataTables.keyTabl') ?>e.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-responsive/js/dataTables.responsiv') ?>e.min.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-responsive-bs/js/responsive.boot') ?>strap.js"></script>
+    <script src="<?= base_url('assets/vendors/datatables.net-scroller/js/dataTables.scrolle') ?>r.min.js"></script>
+    <script src="<?= base_url('assets/vendors/jszip/dist/jszi') ?>p.min.js"></script>
+    <script src="<?= base_url('assets/vendors/pdfmake/build/pdfmak') ?>e.min.js"></script>
+    <script src="<?= base_url('assets/vendors/pdfmake/build/vfs_') ?>fonts.js"></script>
+
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url('assets/build/js/custom.min.js')?>"></script>
 	

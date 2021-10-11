@@ -30,8 +30,8 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-file-text"></i> Kategori Surat <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="datasuratmasuk.php"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
-                      <li><a href="datasuratkeluar.php"><i class="fa fa-send"></i>Surat Keluar</a></li>
+                      <li><a href="<?= base_url('admin/suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
+                      <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-users"></i> Bagian <span class="fa fa-chevron-down"></span></a>
