@@ -20,6 +20,10 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->load->helper('url');
+		$data['title'] = "Welcome";
+		$this->load->view('templates/bootstrap_header', $data);
 		$this->load->view('welcome_message');
+		$this->load->view('templates/bootstrap_footer');
 	}
 }
