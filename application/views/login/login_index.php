@@ -20,6 +20,11 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
+              <?php
+                if (isset($_SESSION['failed'])) {
+                  echo "<div class='alert alert-danger text-danger'>".$_SESSION['failed']."</div>";
+                }
+              ?>
             <form action="<?= base_url('login/check') ?>" id="login" name="login" method="post">
               <h1>Login Admin</h1>
               <div class="form-group has-feedback">
@@ -31,8 +36,7 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
               </div>
               <div>
-                <a href="<?= base_url() ?>"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</button></a>
-                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span> Masuk</button>
+                <button type="submit" class="btn btn-primary form-control"><span class="glyphicon glyphicon-lock"></span> Login</button>
               </div>
 
               <div class="clearfix"></div>

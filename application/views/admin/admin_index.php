@@ -42,9 +42,19 @@
                   <div class="x_content">
                     <div class="row">
                       <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">     
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <?php
+                          if (isset($_SESSION['success'])) {?>
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <?= $_SESSION['success']; ?>
+                            </div>
+                         <?php }
+                        ?>
                             <br><br> 
-                                <center><h1><b>Selamat Datang, Rafli <?php //echo $_SESSION['nama'];?></b></h1></center>
+                            <center>
+                             <h1>Selamat Datang Di Sistem Informasi Pengelolaan Surat Menyurat dan Kearsipan SMK 10 November</h1>
+                            </center>
                             <br><br>  
                         </div>
                       </div>

@@ -13,6 +13,9 @@ class Admin extends CI_Controller{
     **/
     public function index()
 	{
+        if (!isset($_SESSION['v4lid'])){
+            redirect('login');
+        }
 		$this->load->view('admin/admin_index');
 	}
 
@@ -24,5 +27,10 @@ class Admin extends CI_Controller{
     public function suratkeluar()
     { 
         $this->load->view('admin/admin_suratkeluar');
+    }
+
+    public function input_suratmasuk()
+    {
+        $this->load->view('suratmasuk/input_suratmasuk');
     }
 }
