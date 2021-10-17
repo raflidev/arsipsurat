@@ -46,7 +46,7 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form action="proses/proses_inputsuratmasuk.php"  name="formsuratmasuk" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form action="<?=base_url('admin/add_suratmasuk')?>"  name="formsuratmasuk" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tanggal Masuk <span class="required">*</span>
                         </label>
@@ -136,7 +136,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">File <span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                         <input name="file_suratmasuk" accept="application/pdf" type="file" id="file_suratmasuk" class="form-control" autocomplete="off"/> *max 10mb 
+                         <input name="file_suratmasuk" accept="application/pdf" type="file" id="file_suratmasuk" class="form-control" autocomplete="off" required="required"/> *max 10mb 
                         </div>
                       </div>
                       <div class="form-group">
@@ -204,7 +204,6 @@
                             <option></option>
                                 <?php
                                 $sql  		= $this->db->query("SELECT nama_bagian FROM tb_bagian");                        
-                                $query  	= mysqli_query($db, $sql);
                                 foreach ($sql->result_array() as $data){
                                       echo '<option value="'.$data['nama_bagian'].'">'.$data['nama_bagian'].'</option>';
                                       } 
