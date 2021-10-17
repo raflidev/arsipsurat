@@ -34,6 +34,12 @@
                       <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-file-text"></i> Laporan<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?= base_url('admin/suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
+                      <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-users"></i> Bagian <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="databagian.php"><i class="fa  fa-inbox"></i>Data Bagian</a></li>

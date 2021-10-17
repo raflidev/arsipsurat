@@ -36,6 +36,19 @@
           <div class="">
             <div class="page-title">
               <div class="title_right">
+                  <?php
+                    if (isset($_SESSION['success'])) {?>
+                      <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <?= $_SESSION['success']; ?>
+                      </div>
+                    <?php } else if(isset($_SESSION['failed'])) {
+                  ?>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <?= $_SESSION['failed']; ?>
+                      </div>
+                  <?php } ?>
                 <h2>Surat Keluar ><small> Data Surat Keluar</small></h2>
               </div>
             </div>
@@ -79,9 +92,8 @@
                           </select>
                         </div>
                   <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan Surat Keluar</button></a>
-                  <a href="inputsuratkeluar.php"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Surat Keluar</button></a>
+                  <a href="<?= base_url('admin/input_suratkeluar') ?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Surat Keluar</button></a>
                   </form>
-                  <div class="x_content">
                   <div class="x_content">
                               <?php
                               $sql1  		= $this->db->query( "SELECT * FROM tb_suratkeluar order by 	id_suratkeluar asc");
@@ -103,8 +115,6 @@
                           <th width="14%">Aksi</th>
                         </tr>
                       </thead>
-
-
                       <tbody>
                             <?php
                             foreach($sql1->result_array() as $data){
@@ -117,17 +127,16 @@
                               <td>	'. $data['kepada_suratkeluar'].'		</td>
                               <td>  '. $data['perihal_suratkeluar'].'  </td> 
                               <td style="text-align:center;">
-                              <a href= surat_keluar/'.$data['file_suratkeluar'].'><button type="button" title="Unduh File" class="btn btn-success btn-xs"><i class="fa fa-download"></i></button></a>
-                              <a href=detail-suratkeluar.php?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Detail" class="btn btn-info btn-xs"><i class="fa fa-file-image-o"></i></button></a>
-                              <a href=editsuratkeluar.php?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button></a>
-                              <a onclick="return konfirmasi()" href=proses/proses_hapussuratkeluar.php?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></a></td>
+                              <a href= '.base_url('public/surat_keluar/').$data['file_suratkeluar'].'><button type="button" title="Unduh File" class="btn btn-success btn-xs"><i class="fa fa-download"></i></button></a>
+                              <a href='.base_url('admin/detail_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Detail" class="btn btn-info btn-xs"><i class="fa fa-file-image-o"></i></button></a>
+                              <a href='.base_url('admin/edit_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button></a>
+                              <a onclick="return konfirmasi()" href='.base_url('admin/delete_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></a></td>
                               </tr>';
                             }
                             ?>
                       </tbody>
                     </table>
                     <?php } ?>
-                  </div>
                   </div>
                 </div>
               </div>
