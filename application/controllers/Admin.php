@@ -6,6 +6,7 @@ class Admin extends CI_Controller{
         parent::__construct();
         $this->load->model("suratmasuk_model");
         $this->load->model("suratkeluar_model");
+        $this->load->model("bagian_model");
     }
 
     /**
@@ -130,5 +131,68 @@ class Admin extends CI_Controller{
     public function detail_suratkeluar()
     {
         $this->load->view("suratkeluar/detail_suratkeluar");
+    }
+
+    // CRUD BAGIAN
+
+    public function bagian()
+    {
+        $this->load->view('bagian/index_bagian');
+    }
+
+    public function detail_bagian()
+    {
+        $this->load->view('bagian/detail_bagian');
+    }
+
+    public function input_bagian()
+    {
+        $this->load->view('bagian/input_bagian');
+    }
+    
+    public function add_bagian()
+    {
+        $query = $this->bagian_model->save();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Data berhasil di Input");
+            redirect('admin/bagian');       
+        }else{
+            $db_error = $this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/bagian');       
+
+        }
+    }
+
+    public function edit_bagian()
+    {
+        $this->load->view('bagian/edit_bagian');
+    }
+
+    public function update_bagian()
+    {
+        $query = $this->bagian_model->update();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Data berhasil di Edit");
+            redirect('admin/bagian');       
+        }else{
+            $db_error =$this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/bagian');       
+
+        }
+    }
+
+    public function delete_bagian()
+    {
+        $this->bagian_model->delete();
+    }
+
+    // LAPORAN SURAT MASUK
+
+
+    public function laporan_suratmasuk()
+    {
+        $this->load->view('laporan/laporan_suratmasuk');
     }
 }

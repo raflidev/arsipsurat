@@ -40,13 +40,6 @@
               </div>
 
               <div class="clearfix"></div>
-
-              <div class="separator">
-                <div>
-                  <h2><i class="fa fa-institution"></i> PEMKOT SAMARINDA</h2>
-                  <p>©2017 ILMU KOMPUTER UNMUL</p>
-                </div>
-              </div>
             </form>
           </section>
         </div>

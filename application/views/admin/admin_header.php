@@ -1,8 +1,4 @@
-<?php 
-// include '../koneksi/koneksi.php';
-// $sql  		= "SELECT * FROM tb_admin where id_admin='".$_SESSION['id']."'";                        
-// $query  	= mysqli_query($db, $sql);
-// $data 		= mysqli_fetch_array($query);
+<?php
 
 $sql = $this->db->query("SELECT * FROM tb_admin where id_admin='".$_SESSION['id']."'");
 $data = $sql->row_array();
@@ -17,7 +13,7 @@ $data = $sql->row_array();
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?= base_url('assets/images/'),$data['gambar'] ?>" alt=""><?= $data['nama_admin'];?>
+                   <?= $data['nama_admin'];?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

@@ -36,5 +36,10 @@
   <link href="<?= base_url('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') ?>" rel="stylesheet">
 
+  <!-- bootstrap-wysiwyg -->
+  <link href="<?= base_url('assets/vendors/google-code-prettify/bin/prettify.min.css')?>" rel="stylesheet">
+  <!-- starrr -->
+  <link href="<?= base_url('assets/vendors/starrr/dist/starrr.css')?>" rel="stylesheet">
+
   <!-- Custom Theme Style -->
   <link href="<?=base_url('assets/build/css/custom.min.css"')?>" rel="stylesheet">

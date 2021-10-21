@@ -47,7 +47,9 @@
     <!-- Select2 -->
     <script src="<?=base_url('assets/vendors/select2/dist/js/select2.full.min.js')?>"></script>
     <script src="<?=base_url('assets/vendors/bootstrap-daterangepicker/daterangepicker.js')?>"></script>
-
+    <!-- morris.js -->
+    <script src="<?=base_url('assets/vendors/raphael/raphael.min.js')?>"></script>
+    <script src="<?=base_url('assets/vendors/morris.js/morris.min.js')?>"></script>
     <!-- bootstrap-datetimepicker -->    
     <script src="<?=base_url('assets/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')?>"></script>
     <!-- Parsley -->

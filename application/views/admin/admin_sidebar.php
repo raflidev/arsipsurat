@@ -11,10 +11,7 @@
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="<?= base_url('assets/images/'),$data['gambar'] ?>" height="55" width="55" alt="" class="img-circle profile_img">
-              </div>
+            <div class="profile clearfix" style="padding-left:5px;">  
               <div class="profile_info">
                 <span>Selamat Datang,</span>
                 <h2><?= $_SESSION['nama']; ?></h2>
@@ -34,15 +31,21 @@
                       <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-file-text"></i> Laporan<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-file-text"></i> Arsip<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= base_url('admin/suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
                       <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-file-text"></i> Laporan<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?= base_url('admin/laporan_suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
+                      <li><a href="<?= base_url('admin/laporan_suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-users"></i> Bagian <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="databagian.php"><i class="fa  fa-inbox"></i>Data Bagian</a></li>
+                      <li><a href="<?=base_url('admin/bagian')?>"><i class="fa  fa-inbox"></i>Data Bagian</a></li>
                     </ul>
                   </li>
                 </ul>
