@@ -95,7 +95,7 @@
                         </tr>
                         <tr>
                           <td>File</td>
-                          <td><a href= "<?php echo 'surat_masuk/'.$data['file_suratmasuk'].''?>"><b>Unduh File</b></a></td>
+                          <td><a href= "<?= base_url('public/surat_masuk/'.$data['file_suratmasuk'].'')?>"><b>Unduh File</b></a></td>
                         </tr>
                         <tr>
                           <td>Operator</td>
@@ -132,7 +132,7 @@
                       </tbody>
                     </table>
                     <div class="text-right">
-                   <a href="datasuratmasuk.php" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</a></div>
+                   <a href="<?= base_url('admin/suratmasuk') ?>" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</a></div>
 
                   </div>
                      

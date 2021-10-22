@@ -91,7 +91,7 @@
                         </tr>
                         <tr>
                           <td>File</td>
-                          <td><a href= "<?php echo 'surat_keluar/'.$data['file_suratkeluar'].''?>"><b>Unduh File</b></a></td>
+                          <td><a href= "<?= base_url('public/surat_keluar/'.$data['file_suratkeluar'].'')?>"><b>Unduh File</b></a></td>
                         </tr>
                         <tr>
                           <td>Operator</td>

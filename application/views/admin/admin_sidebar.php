@@ -23,6 +23,12 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
+                <h3>Dashboard</h3>
+                <ul class="nav side-menu">
+                  <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Dashboard</a>
+                   
+                  </li>
+                </ul>
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-file-text"></i> Kategori Surat <span class="fa fa-chevron-down"></span></a>
@@ -37,7 +43,7 @@
                       <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-file-text"></i> Laporan<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-file"></i> Laporan<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= base_url('admin/laporan_suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
                       <li><a href="<?= base_url('admin/laporan_suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>

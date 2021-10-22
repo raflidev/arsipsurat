@@ -45,7 +45,7 @@
                         <?= $_SESSION['failed']; ?>
                       </div>
                   <?php } ?>
-                <h2>Surat Masuk > <small>Laporan Surat Masuk</small></h2>
+                <h2>Surat Masuk > <small>Laporan Surat Keluar</small></h2>
               </div>
             </div>
 
@@ -55,11 +55,11 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Data<small>Surat Masuk</small></h2>
+                    <h2>Data<small>Surat Keluar</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <!-- downloadlaporan_suratmasuk.php -->
-                      <form action="<?= base_url('admin/laporan_suratmasuk') ?>"  name="download_suratmasuk" method="get" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                      <form action="<?= base_url('admin/laporan_suratkeluar') ?>"  name="download_suratmasuk" method="get" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                         <div class="col-md-2 col-sm-2 col-xs-6">
                           <select name="bulan" class="select2_single form-control" tabindex="-1">
                             <option value="0">Pilih Bulan</option>
@@ -93,8 +93,8 @@
                     $bulan = (isset($_GET['bulan'])) ?  $_GET['bulan'] : 0;
                     $tahun = (isset($_GET['tahun'])) ?  $_GET['tahun'] : 0;
                     if($bulan != 0 && $tahun != 0){ ?>
-                      <a href="<?= base_url('admin/laporan_suratmasuk_pdf?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
-                      <a href="<?= base_url('admin/laporan_suratmasuk_excel?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan Excel</a></a>
+                      <a href="<?= base_url('admin/laporan_suratkeluar_pdf?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
+                      <a href="<?= base_url('admin/laporan_suratkeluar_excel?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan Excel</a></a>
 
                     <?php }
                     ?>
@@ -103,7 +103,7 @@
                   <div class="x_content">
                               <?php
                               if(isset($bulan) && isset($tahun)){
-                                $sql1  		= $this->db->query("SELECT * FROM tb_suratmasuk where month(tanggalmasuk_suratmasuk) = ".$bulan." and year(tanggalmasuk_suratmasuk) = ".$tahun." order by id_suratmasuk asc");
+                                $sql1  		= $this->db->query("SELECT * FROM tb_suratkeluar where month(tanggalkeluar_suratkeluar) = ".$bulan." and year(tanggalkeluar_suratkeluar) = ".$tahun." order by id_suratkeluar asc");
                                 $total		= $sql1->num_rows();
                               }
                                 if ($total == 0) {
@@ -113,15 +113,14 @@
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th width="3%">No Urut</th>
-                          <th width="10%">Tanggal Masuk</th>
-                          <th width="3%">Kode Surat</th>
+                        <th width="15%">Nomor Surat</th>
+                          <th width="10%">Tanggal Keluar</th>
+                          <th width="5%">Kode Surat</th>
                           <th width="10%">Tanggal Surat</th>
-                          <th width="14%">Pengirim</th>
-                          <th width="15%">Nomor Surat</th>
-                          <th width="10%">Kepada</th>
-                          <th width="25%">Perihal</th>
-                          <th width="15%">Aksi</th>
+                          <th width="10%">Bagian</th>
+                          <th width="15%">Kepada</th>
+                          <th width="21%">Perihal</th>
+                          <th width="14%">Aksi</th>
                         </tr>
                       </thead>
 
@@ -131,20 +130,18 @@
                             
                             foreach($sql1->result_array() as $data){
                               echo'<tr>
-                              <td>	'. $data['nomorurut_suratmasuk'].'  	</td>
-                              <td>	'. $data['tanggalmasuk_suratmasuk'].'		</td>
-                              <td>	'. $data['kode_suratmasuk'].'	</td>
-                              <td>	'. $data['tanggalsurat_suratmasuk'].'	</td>
-                              <td>	'. $data['pengirim'].'  		</td>
-                              <td>	'. $data['nomor_suratmasuk'].'  		</td>
-                              <td>	'. $data['kepada_suratmasuk'].'		</td>
-                              <td>  '. $data['perihal_suratmasuk'].'  </td> 
+                              <td>	'. $data['nomor_suratkeluar'].'  	</td>
+                              <td>	'. $data['tanggalkeluar_suratkeluar'].'		</td>
+                              <td>	'. $data['kode_suratkeluar'].'	</td>
+                              <td>	'. $data['tanggalsurat_suratkeluar'].'	</td>
+                              <td>	'. $data['nama_bagian'].'  		</td>
+                              <td>	'. $data['kepada_suratkeluar'].'  		</td>
+                              <td>  '. $data['perihal_suratkeluar'].'  </td> 
                               <td style="text-align:center;">
-                              <a href= '.base_url('public/surat_masuk/').$data['file_suratmasuk'].'><button type="button" title="Unduh File" class="btn btn-success btn-xs"><i class="fa fa-download"></i></button></a>
-                              <a href= downloaddisposisi.php?id_suratmasuk='.$data['id_suratmasuk'].'><button type="button" title="Unduh Disposisi" class="btn btn-info btn-xs"><i class="fa fa-download"></i></button></a>
-                              <a href='.base_url('admin/detail_suratmasuk').'?id_suratmasuk='.$data['id_suratmasuk'].'><button type="button" title="Detail" class="btn btn-info btn-xs"><i class="fa fa-file-image-o"></i></button></a>
-                              <a href='.base_url('admin/edit_suratmasuk').'?id_suratmasuk='.$data['id_suratmasuk'].'><button type="button" title="Edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button></a>
-                              <a onclick="return konfirmasi()" href="'.base_url('admin/delete_suratmasuk').'?id_suratmasuk='.$data['id_suratmasuk'].'"><button type="button" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></a></td>
+                              <a href= '.base_url('public/surat_keluar/').$data['file_suratkeluar'].'><button type="button" title="Unduh File" class="btn btn-success btn-xs"><i class="fa fa-download"></i></button></a>
+                              <a href='.base_url('admin/detail_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Detail" class="btn btn-info btn-xs"><i class="fa fa-file-image-o"></i></button></a>
+                              <a href='.base_url('admin/edit_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button></a>
+                              <a onclick="return konfirmasi()" href='.base_url('admin/delete_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></a></td>
                               </tr>';
                             }
                             ?>
