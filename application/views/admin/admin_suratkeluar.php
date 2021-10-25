@@ -62,38 +62,7 @@
                     <h2>Data<small>Surat Keluar</small></h2>
                     <div class="clearfix"></div>
                   </div>
-                   <form action="downloadlaporan_suratkeluar.php"  name="download_suratkeluar" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                        <div class="col-md-2 col-sm-2 col-xs-6">
-                          <select name="bulan" class="select2_single form-control" tabindex="-1">
-                            <option>Pilih Bulan</option>
-                            <option value="01">Januari</option>
-                            <option value="02">Februari</option>
-                            <option value="03">Maret</option>
-                            <option value="04">April</option>
-                            <option value="05">Mei</option>
-                            <option value="06">Juni</option>
-                            <option value="07">Juli</option>
-                            <option value="08">Agustus</option>
-                            <option value="09">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                          </select>
-                        </div>
-                        <div class="col-md-2 col-sm-2 col-xs-6">
-                          <select name="tahun" class="select2_single form-control" tabindex="-1">
-                            <option>Pilih Tahun</option>
-                            <?php
-                                for ($tahun=2017;$tahun<=2022;$tahun++)
-                                      {
-                                       echo  '<option value="'.$tahun.'">'.$tahun.'</option>';
-                                      }
-                            ?>
-                          </select>
-                        </div>
-                  <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan Surat Keluar</button></a>
-                  <a href="<?= base_url('admin/input_suratkeluar') ?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Surat Keluar</button></a>
-                  </form>
+                <a href="<?= base_url('admin/input_suratkeluar') ?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Surat Keluar</button></a>
                   <div class="x_content">
                               <?php
                               $sql1  		= $this->db->query( "SELECT * FROM tb_suratkeluar order by 	id_suratkeluar asc");

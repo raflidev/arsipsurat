@@ -37,10 +37,10 @@
                       <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-file-text"></i> Arsip<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-archive"></i> Arsip<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?= base_url('admin/suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
-                      <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
+                      <li><a href="<?= base_url('admin/arsip_suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
+                      <li><a href="<?= base_url('admin/arsip_suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-file"></i> Laporan<span class="fa fa-chevron-down"></span></a>

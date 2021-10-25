@@ -45,7 +45,7 @@
                         <?= $_SESSION['failed']; ?>
                       </div>
                   <?php } ?>
-                <h2>Surat Masuk > <small>Data Surat Masuk</small></h2>
+                <h2>Surat Masuk > <small>Data Arsip Surat Masuk</small></h2>
               </div>
             </div>
 
@@ -58,11 +58,9 @@
                     <h2>Data<small>Surat Masuk</small></h2>
                     <div class="clearfix"></div>
                   </div>
-                <a href="<?= base_url('admin/input_suratmasuk') ?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Surat Masuk</button></a>
-                  <div class="x_content">
                   <div class="x_content">
                               <?php
-                              $sql1  		= $this->db->query("SELECT * FROM tb_suratmasuk order by id_suratmasuk asc");
+                              $sql1  		= $this->db->query("SELECT * FROM tb_arsip_suratmasuk inner join tb_suratmasuk using(id_suratmasuk) order by id_arsipmasuk asc");
                               $total		= $sql1->num_rows();
                               if ($total == 0) {
                                 echo"<center><h2>Belum Ada Data Surat Masuk</h2></center>";
@@ -72,13 +70,14 @@
                       <thead>
                         <tr>
                           <th width="3%">No Urut</th>
-                          <th width="10%">Tanggal Masuk</th>
-                          <th width="3%">Kode Surat</th>
-                          <th width="10%">Tanggal Surat</th>
                           <th width="14%">Pengirim</th>
                           <th width="15%">Nomor Surat</th>
                           <th width="10%">Kepada</th>
                           <th width="25%">Perihal</th>
+                          <th width="10%">Tanggal Surat</th>
+                          <th width="3%">No Box</th>
+                          <th width="3%">No Rak</th>
+                          <th width="3%">No Fisis</th>
                           <th width="15%">Aksi</th>
                         </tr>
                       </thead>
@@ -90,27 +89,23 @@
                             foreach($sql1->result_array() as $data){
                               echo'<tr>
                               <td>	'. $data['nomorurut_suratmasuk'].'  	</td>
-                              <td>	'. $data['tanggalmasuk_suratmasuk'].'		</td>
-                              <td>	'. $data['kode_suratmasuk'].'	</td>
-                              <td>	'. $data['tanggalsurat_suratmasuk'].'	</td>
                               <td>	'. $data['pengirim'].'  		</td>
                               <td>	'. $data['nomor_suratmasuk'].'  		</td>
                               <td>	'. $data['kepada_suratmasuk'].'		</td>
                               <td>  '. $data['perihal_suratmasuk'].'  </td> 
+                              <td>	'. $data['tanggalsurat_suratmasuk'].'	</td>
+                              <td>  '. $data['no_box'].'  </td> 
+                              <td>  '. $data['no_rak'].'  </td> 
+                              <td>  '. $data['no_fisis'].'  </td> 
                               <td style="text-align:center;">
-                              <a href= '.base_url('public/surat_masuk/').$data['file_suratmasuk'].'><button type="button" title="Unduh File" class="btn btn-success btn-xs"><i class="fa fa-download"></i></button></a>
-                              <a href= downloaddisposisi.php?id_suratmasuk='.$data['id_suratmasuk'].'><button type="button" title="Unduh Disposisi" class="btn btn-info btn-xs"><i class="fa fa-download"></i></button></a>
-                              <a href='.base_url('admin/detail_suratmasuk').'?id_suratmasuk='.$data['id_suratmasuk'].'><button type="button" title="Detail" class="btn btn-info btn-xs"><i class="fa fa-file-image-o"></i></button></a>
-                              <a href='.base_url('admin/edit_suratmasuk').'?id_suratmasuk='.$data['id_suratmasuk'].'><button type="button" title="Edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button></a>
-                              <a href='.base_url('admin/input_arsip_suratmasuk').'?id_suratmasuk='.$data['id_suratmasuk'].'><button type="button" title="Arsipkan" class="btn btn-default btn-xs"><i class="fa fa-archive"></i></button></a>
-                              <a onclick="return konfirmasi()" href="'.base_url('admin/delete_suratmasuk').'?id_suratmasuk='.$data['id_suratmasuk'].'"><button type="button" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></a></td>
+                              <a href='.base_url('admin/edit_arsip_suratmasuk').'?id_arsipmasuk='.$data['id_arsipmasuk'].'><button type="button" title="Edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button></a>
+                              <a onclick="return konfirmasi()" href="'.base_url('admin/delete_arsip_suratmasuk').'?id_arsipmasuk='.$data['id_arsipmasuk'].'"><button type="button" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></a></td>
                               </tr>';
                             }
                             ?>
                       </tbody>
                     </table>
                    <?php } ?>
-                  </div>
                   </div>
                 </div>
               </div>

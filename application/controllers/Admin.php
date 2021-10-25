@@ -9,6 +9,7 @@ class Admin extends CI_Controller{
         parent::__construct();
         $this->load->model("suratmasuk_model");
         $this->load->model("suratkeluar_model");
+        $this->load->model("arsipsuratmasuk_model");
         $this->load->model("bagian_model");
     }
 
@@ -389,5 +390,61 @@ class Admin extends CI_Controller{
         }
 
         $pdf->Output();
+    }
+
+    // ARSIP
+
+    public function arsip_suratmasuk()
+    {
+        $this->load->view('arsip/arsip_suratmasuk');
+    }
+
+    public function input_arsip_suratmasuk()
+    {
+        $id = $_GET['id_suratmasuk'];
+        $query = $this->db->get_where("tb_arsip_suratmasuk", array('id_suratmasuk' => $id));
+        if($query->num_rows() > 0){
+            $this->session->set_flashdata("failed", "Surat sudah diarsipkan, silakan cek di menu arsip");
+            redirect('admin/suratmasuk');
+        }else{
+            $this->load->view('arsip/input_arsip_suratmasuk');
+        }
+
+    }
+
+    public function add_arsip_suratmasuk()
+    {
+        $query = $this->arsipsuratmasuk_model->save();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Arsip berhasil");
+            redirect('admin/suratmasuk');       
+        }else{
+            $db_error = $this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/suratmasuk');
+        }
+    }
+
+    public function edit_arsip_suratmasuk()
+    {
+        $this->load->view('arsip/edit_arsip_suratmasuk');
+    }
+
+    public function update_arsip_suratmasuk()
+    {
+        $query = $this->arsipsuratmasuk_model->update();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Arsip berhasil");
+            redirect('admin/arsip_suratmasuk');       
+        }else{
+            $db_error = $this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/arsip_suratmasuk');
+        }
+    }
+
+    public function delete_arsip_suratmasuk()
+    {
+        $this->arsipsuratmasuk_model->delete();
     }
 }
