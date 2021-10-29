@@ -13,11 +13,17 @@ class Laporan extends CI_Controller{
     * @param none
     * @return void
     **/
-    function penerima_bantuan(){
-        $pdf = new FPDF();
-        $pdf->AddPage();
-        $pdf->SetFont('Arial','B',16);
-        $pdf->Cell(40,10,'Hello World!');
-        $pdf->Output();
+    public function laporan_pdf(){
+
+        $this->db->select();
+        $data['suratmasuk'] = $this->db->get("tb_suratmasuk");
+    
+        $this->load->library('pdf');
+        
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-petanikode.pdf";
+        $this->pdf->load_view('laporan_pdf', $data);
+    
+    
     }
 }

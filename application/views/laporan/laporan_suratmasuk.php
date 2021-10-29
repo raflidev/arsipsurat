@@ -58,41 +58,64 @@
                     <h2>Data<small>Surat Masuk</small></h2>
                     <div class="clearfix"></div>
                   </div>
+                  <?php
+                    $bulan = (isset($_GET['bulan'])) ?  $_GET['bulan'] : 0;
+                    $tahun = (isset($_GET['tahun'])) ?  $_GET['tahun'] : 0;
+                    if(isset($bulan) && isset($tahun)){
+                      $sql1  		= $this->db->query("SELECT * FROM tb_suratmasuk where month(tanggalmasuk_suratmasuk) = ".$bulan." and year(tanggalmasuk_suratmasuk) = ".$tahun." order by id_suratmasuk asc");
+                      $total		= $sql1->num_rows();
+                    }
+                  ?>
                   <!-- downloadlaporan_suratmasuk.php -->
                       <form action="<?= base_url('admin/laporan_suratmasuk') ?>"  name="download_suratmasuk" method="get" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                         <div class="col-md-2 col-sm-2 col-xs-6">
                           <select name="bulan" class="select2_single form-control" tabindex="-1">
-                            <option value="0">Pilih Bulan</option>
-                            <option value="01">Januari</option>
-                            <option value="02">Februari</option>
-                            <option value="03">Maret</option>
-                            <option value="04">April</option>
-                            <option value="05">Mei</option>
-                            <option value="06">Juni</option>
-                            <option value="07">Juli</option>
-                            <option value="08">Agustus</option>
-                            <option value="09">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
+                            <?php
+                              $array_bulan = array(
+                                "01" => "Januari",
+                                "02" => "Februari",
+                                "03" => "Maret",
+                                "04" => "April",
+                                "05" => "Mei",
+                                "06" => "Juni",
+                                "07" => "Juli",
+                                "08" => "Agustus",
+                                "09" => "September",
+                                "10" => "Oktober",
+                                "11" => "November",
+                                "12" => "Desember"
+                              );
+
+                              if(isset($_GET['bulan']) && isset($_GET['tahun'])){
+                              echo "<option value='".$bulan."' hidden>".$array_bulan[$bulan]."</option>";
+                              } else {
+                                echo "<option selected disabled hidden>Pilih Bulan</option>";
+                              } ?>
+                            <?php
+                              foreach ($array_bulan as $data => $value) {
+                                echo "<option value='".$data."'>".$value."</option>";
+                              }
+                            ?>
                           </select>
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-6">
                           <select name="tahun" class="select2_single form-control" tabindex="-1">
-                            <option value="0">Pilih Tahun</option>
-                            <?php
-                                for ($tahun=2017;$tahun<=2022;$tahun++)
+                          <?php
+                              if(isset($_GET['bulan']) && isset($_GET['tahun'])){
+                              echo "<option value='".$tahun."' hidden>".$tahun."</option>";
+                              } else {
+                                echo "<option selected disabled hidden>Pilih Tahun </option>";
+                              } 
+                                for ($thn=2017;$thn<=date("Y");$thn++)
                                       {
-                                       echo  '<option value="'.$tahun.'">'.$tahun.'</option>';
+                                       echo  '<option value="'.$thn.'">'.$thn.'</option>';
                                       }
                             ?>
                           </select>
                         </div>
                   <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Filter</button></a>
                   <?php
-                    $bulan = (isset($_GET['bulan'])) ?  $_GET['bulan'] : 0;
-                    $tahun = (isset($_GET['tahun'])) ?  $_GET['tahun'] : 0;
-                    if($bulan != 0 && $tahun != 0){ ?>
+                  if($bulan != 0 && $tahun != 0 && $total != 0){ ?>
                       <a href="<?= base_url('admin/laporan_suratmasuk_pdf?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
                       <a href="<?= base_url('admin/laporan_suratmasuk_excel?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan Excel</a></a>
 
@@ -102,10 +125,6 @@
                   </form>
                   <div class="x_content">
                               <?php
-                              if(isset($bulan) && isset($tahun)){
-                                $sql1  		= $this->db->query("SELECT * FROM tb_suratmasuk where month(tanggalmasuk_suratmasuk) = ".$bulan." and year(tanggalmasuk_suratmasuk) = ".$tahun." order by id_suratmasuk asc");
-                                $total		= $sql1->num_rows();
-                              }
                                 if ($total == 0) {
                                   echo"<center><h2>Belum Ada Data Surat Masuk</h2></center>";
                                 }

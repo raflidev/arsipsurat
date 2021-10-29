@@ -34,9 +34,12 @@
                   <li><a><i class="fa fa-file-text"></i> Kategori Surat <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= base_url('admin/suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
+                      <?php if($this->session->userdata('v4lid') == "admin"){ ?>
                       <li><a href="<?= base_url('admin/suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
+                      <?php } ?>
                     </ul>
                   </li>
+                  <?php if($this->session->userdata('v4lid') == "admin"){ ?>
                   <li><a><i class="fa fa-archive"></i> Arsip<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= base_url('admin/arsip_suratmasuk') ?>"><i class="fa  fa-inbox"></i>Surat Masuk</a></li>
@@ -54,6 +57,7 @@
                       <li><a href="<?=base_url('admin/bagian')?>"><i class="fa  fa-inbox"></i>Data Bagian</a></li>
                     </ul>
                   </li>
+                  <?php } ?>
                 </ul>
               </div>
             </div>
