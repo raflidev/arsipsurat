@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
-//session_start();
-//include "login/ceksession.php";
+if($this->session->userdata('v4lid') == "bagian"){
+  $this->session->set_flashdata('failed', 'Anda tidak punya hak akses');
+  redirect('admin');
+}
 ?>
 <html lang="en">
   <head>

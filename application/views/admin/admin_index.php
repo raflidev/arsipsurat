@@ -51,6 +51,14 @@
                             </div>
                          <?php }
                         ?>
+                        <?php
+                          if (isset($_SESSION['failed'])) {?>
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <?= $_SESSION['failed']; ?>
+                            </div>
+                         <?php }
+                        ?>
                             <br><br> 
                             <center>
                              <h1>Selamat Datang Di Sistem Informasi Pengelolaan Surat Menyurat dan Kearsipan SMK 10 November</h1>

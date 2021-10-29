@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2018 at 03:49 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.5.30
+-- Generation Time: Oct 29, 2021 at 10:00 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -41,6 +42,49 @@ CREATE TABLE `tb_admin` (
 INSERT INTO `tb_admin` (`id_admin`, `nama_admin`, `username_admin`, `password`, `gambar`) VALUES
 (1, 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin.jpg'),
 (2, 'admin2', 'admin2', '315f166c5aca63a157f7d41007675cb44a948b33', 'admin2.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_arsip_suratkeluar`
+--
+
+CREATE TABLE `tb_arsip_suratkeluar` (
+  `id_arsipkeluar` int(11) NOT NULL,
+  `id_suratkeluar` int(11) NOT NULL,
+  `no_box` int(11) NOT NULL,
+  `no_rak` int(11) NOT NULL,
+  `no_fisis` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_arsip_suratkeluar`
+--
+
+INSERT INTO `tb_arsip_suratkeluar` (`id_arsipkeluar`, `id_suratkeluar`, `no_box`, `no_rak`, `no_fisis`) VALUES
+(2, 27, 11, 1, 112);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_arsip_suratmasuk`
+--
+
+CREATE TABLE `tb_arsip_suratmasuk` (
+  `id_arsipmasuk` int(11) NOT NULL,
+  `id_suratmasuk` int(11) NOT NULL,
+  `no_box` int(11) NOT NULL,
+  `no_rak` int(11) NOT NULL,
+  `no_fisis` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_arsip_suratmasuk`
+--
+
+INSERT INTO `tb_arsip_suratmasuk` (`id_arsipmasuk`, `id_suratmasuk`, `no_box`, `no_rak`, `no_fisis`) VALUES
+(1, 2, 1, 2, 2),
+(3, 5, 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -89,6 +133,31 @@ INSERT INTO `tb_bagian` (`id_bagian`, `nama_bagian`, `username_admin_bagian`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_disposisi`
+--
+
+CREATE TABLE `tb_disposisi` (
+  `id_disposisi` int(11) NOT NULL,
+  `id_suratmasuk` int(11) NOT NULL,
+  `id_bagian` int(11) NOT NULL,
+  `pesan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_disposisi`
+--
+
+INSERT INTO `tb_disposisi` (`id_disposisi`, `id_suratmasuk`, `id_bagian`, `pesan`) VALUES
+(6, 36, 1, 'yaya walikota'),
+(7, 36, 9, 'umum'),
+(8, 3, 9, 'nice'),
+(9, 5, 3, 'laporan telah diterima'),
+(10, 2, 2, 'sudah diterima dengan baik'),
+(11, 8, 2, 'bagus.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_suratkeluar`
 --
 
@@ -103,7 +172,7 @@ CREATE TABLE `tb_suratkeluar` (
   `perihal_suratkeluar` text NOT NULL,
   `file_suratkeluar` varchar(255) NOT NULL,
   `operator` varchar(50) NOT NULL,
-  `tanggal_entry` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tanggal_entry` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -111,7 +180,7 @@ CREATE TABLE `tb_suratkeluar` (
 --
 
 INSERT INTO `tb_suratkeluar` (`id_suratkeluar`, `tanggalkeluar_suratkeluar`, `kode_suratkeluar`, `nomor_suratkeluar`, `nama_bagian`, `tanggalsurat_suratkeluar`, `kepada_suratkeluar`, `perihal_suratkeluar`, `file_suratkeluar`, `operator`, `tanggal_entry`) VALUES
-(27, '2017-11-15 11:15:00', '411', '3451/WALIKOTA/2017', 'WALIKOTA', '2017-11-15', 'Masyarakat', 'Himbauan Gotong Royong', '2017-3451.pdf', 'admin', '2017-11-18 01:25:31'),
+(27, '2017-11-15 11:15:00', '411', '3451/WALIKOTA/2017', 'WALIKOTA', '2017-11-15', 'Masyarakat', 'Himbauan Gotong Royong', '2021-3451.pdf', 'admin', '2021-10-22 16:23:28'),
 (29, '2017-11-15 08:20:00', '851', '3453/TU/2017', 'TU', '2017-11-15', 'Kepala Bagian Tata Usaha', 'Cuti Tahunan ', '2017-3453.pdf', 'admin', '2017-11-18 02:39:32'),
 (30, '2017-11-14 13:25:00', '915.1', '3454/ADM.PEMB/2017', 'ADM.PEMB', '2017-11-15', 'Walikota', 'Daftar Usulan Proyek', '2017-3454.pdf', 'admin', '2017-11-14 23:29:41'),
 (31, '2017-11-17 08:30:00', '125.4', '3455/PEM-OTDA/2017', 'PEM-OTDA', '2017-11-16', 'Camat Samarida Seberang', 'Pemekaran Wilayah', '2017-3455.pdf', 'admin', '2017-11-16 02:30:02'),
@@ -119,7 +188,13 @@ INSERT INTO `tb_suratkeluar` (`id_suratkeluar`, `tanggalkeluar_suratkeluar`, `ko
 (88, '2017-11-17 08:45:00', '476.4', '3456/KESRA/2017', 'KESRA', '2017-11-17', 'Lurah SE-KOTA SAMARINDA', 'Peninjauan Kampung KB', '2017-3456.pdf', 'admin', '2017-11-17 02:58:51'),
 (90, '2017-11-18 08:30:00', '376', '3458/ASSIII/2017', 'ASS.III', '2017-11-18', 'Kontraktor Bangunan', 'Penindakan Bangunan tanpa surat izin mendirikan bangunan', '2017-3458.pdf', 'admin', '2017-11-18 03:19:54'),
 (91, '2017-11-30 01:00:00', '454', '3457/ORTAL/2017', 'ORTAL', '2017-11-30', 'Lurah SE-KOTA SAMARINDA', 'Pelatihan Kelembagaan Desa', '2017-3457.pdf', 'admin', '2017-11-30 00:01:06'),
-(92, '2017-12-06 08:17:00', '342', '3459/TU/2017', 'TU', '2017-12-06', 'CAMAT SE-KOTA SAMARINDA', 'pilgub', '2017-3459.pdf', 'admin', '2017-12-06 07:19:29');
+(92, '2017-12-06 08:17:00', '342', '3459/TU/2017', 'TU', '2017-12-06', 'CAMAT SE-KOTA SAMARINDA', 'pilgub', '2017-3459.pdf', 'admin', '2017-12-06 07:19:29'),
+(93, '2021-10-14 17:38:00', '1000101', '3460', 'WALIKOTA', '2021-10-14', 'a', 'a', '2021-3460.pdf', 'admin', '2021-10-14 17:44:25'),
+(94, '2021-10-14 17:38:47', '', '3461', 'WALIKOTA', '2021-10-14', '', '', '2021-3461.pdf', '', '2021-10-14 17:38:47'),
+(95, '2021-10-15 17:39:00', '11011', '3462', 'UMUM', '2021-10-14', 'a', 'a', '2021-3462.pdf', 'admin', '2021-10-14 17:40:23'),
+(96, '2021-10-14 17:41:11', '', '3463', 'WALIKOTA', '2021-10-14', '', '', '2021-3463.pdf', '', '2021-10-14 17:41:11'),
+(97, '2021-10-14 17:41:00', '1010101', '3464', 'WALIKOTA', '2021-10-14', 'a', 'a', '2021-3464.pdf', 'admin', '2021-10-14 17:41:52'),
+(99, '2021-10-17 12:59:00', '1', '3465', 'WALIKOTA', '2021-10-17', '1', '1', '2021-3465.pdf', 'admin', '2021-10-17 12:59:12');
 
 -- --------------------------------------------------------
 
@@ -129,7 +204,7 @@ INSERT INTO `tb_suratkeluar` (`id_suratkeluar`, `tanggalkeluar_suratkeluar`, `ko
 
 CREATE TABLE `tb_suratmasuk` (
   `id_suratmasuk` int(11) NOT NULL,
-  `tanggalmasuk_suratmasuk` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tanggalmasuk_suratmasuk` datetime NOT NULL DEFAULT current_timestamp(),
   `kode_suratmasuk` varchar(10) NOT NULL,
   `nomorurut_suratmasuk` varchar(7) NOT NULL,
   `nomor_suratmasuk` varchar(25) NOT NULL,
@@ -139,13 +214,13 @@ CREATE TABLE `tb_suratmasuk` (
   `perihal_suratmasuk` text NOT NULL,
   `file_suratmasuk` varchar(255) NOT NULL,
   `operator` varchar(50) NOT NULL,
-  `tanggal_entry` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tanggal_entry` datetime NOT NULL DEFAULT current_timestamp(),
   `disposisi1` varchar(50) NOT NULL,
-  `tanggal_disposisi1` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tanggal_disposisi1` datetime NOT NULL,
   `disposisi2` varchar(50) NOT NULL,
-  `tanggal_disposisi2` varchar(25) NOT NULL,
+  `tanggal_disposisi2` datetime NOT NULL,
   `disposisi3` varchar(50) NOT NULL,
-  `tanggal_disposisi3` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tanggal_disposisi3` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -153,12 +228,15 @@ CREATE TABLE `tb_suratmasuk` (
 --
 
 INSERT INTO `tb_suratmasuk` (`id_suratmasuk`, `tanggalmasuk_suratmasuk`, `kode_suratmasuk`, `nomorurut_suratmasuk`, `nomor_suratmasuk`, `tanggalsurat_suratmasuk`, `pengirim`, `kepada_suratmasuk`, `perihal_suratmasuk`, `file_suratmasuk`, `operator`, `tanggal_entry`, `disposisi1`, `tanggal_disposisi1`, `disposisi2`, `tanggal_disposisi2`, `disposisi3`, `tanggal_disposisi3`) VALUES
-(2, '2017-09-20 13:00:00', '900', '4518', '050/588/300.01', '2017-09-20', 'BAPPEDA KOTA SAMARINDA', 'Sekretaris Daerah', 'Penyampaian Usulan Bantuan Keuangan Pada APBD Prov.Kaltim Tahun 2018\r\n', '2017-4518.pdf', 'admin', '2017-11-18 03:30:06', 'SEKDA', '2017-09-20 14:30:00', 'PLT.ASS.II', '2017-09-28 09:00:00', 'ADM.PEMB', '2017-09-29 10:00:00'),
+(2, '2017-09-20 13:00:00', '900', '4518', '050/588/300.01', '2017-09-20', 'BAPPEDA KOTA SAMARINDA', 'Sekretaris Daerah', 'Penyampaian Usulan Bantuan Keuangan Pada APBD Prov.Kaltim Tahun 2018\\\\\\\\r\\\\\\\\n', '2021-4518.pdf', 'admin', '2021-10-17 11:57:22', 'WAKIL WALIKOTA', '1970-01-01 07:00:00', 'PLT.ASS.II', '2017-09-28 09:00:00', 'ADM.PEMB', '2017-09-29 10:00:00'),
 (3, '2017-09-20 14:00:00', '010', '4519', '036/B/HMJELEKTRO/IX/2017', '2017-09-18', 'FORUM KOMUNIKASI HIMPUNAN MAHASISWA ELEKTRO INDONESIA WILAYAH XIII KALIMANTAN', 'UMUM', 'Permohonan\r\n', '2017-4519.pdf', 'admin2', '2017-11-14 23:43:44', 'UMUM', '2017-09-22 11:00:00', '', '1970-01-01 07:00:00', 'UMUM', '2017-09-22 11:05:00'),
 (5, '2017-09-21 15:10:00', '660', '4520', '660.2/1539/100.14', '2017-09-19', 'DINAS LINGKUNGAN HIDUP KOTA SAMARINDA', 'Sekretaris Daerah', 'Penting', '2017-4520.pdf', 'admin2', '2017-11-14 23:58:01', 'SEKDA', '2017-09-21 23:00:00', 'PLT.ASS.II', '2017-09-24 21:00:00', 'EKONOMI & SDA', '2017-09-25 09:00:00'),
 (6, '2017-09-26 10:00:00', '061', '4521', '061/4382/SJ', '2017-09-20', 'MENDAGRI RI', 'Organisasi', 'Surat Edaran Tentang Mekanisme Layanan Administrasi Kemendagri\r\n', '2017-4521.pdf', 'admin', '2017-12-02 21:44:11', 'ASS.III', '2017-09-26 15:00:00', '', '1970-01-01 07:00:00', 'ORTAL', '2017-09-27 11:30:00'),
 (7, '2017-09-25 14:00:00', '503', '4522', '503/744/100.26', '2017-09-25', 'DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU KOTA SAMARINDA', 'PLH SEKDA', 'Tindak Lanjut Permohonan Penghapusan Denda Retribusi IMB PT.Borneo Inti Graha\r\n', '2017-4522.pdf', 'admin', '2017-12-06 00:32:23', 'PLH.SEKDA', '2017-09-26 10:00:00', '', '1970-01-01 07:00:00', 'HUKUM', '2017-09-27 15:00:00'),
-(8, '2017-12-06 08:12:00', '454', '4523 ', '4121/wawali/2017', '2017-12-06', 'pdam', 'wawali', 'air', '2017-4523.pdf', 'admin', '2017-12-06 07:15:07', 'WAKIL WALIKOTA', '2017-12-14 08:14:00', 'ADM.PEMB', '2017-12-12 08:14:00', 'PEM-OTDA', '2017-12-13 08:15:00');
+(8, '2017-12-06 08:12:00', '454', '4523 ', '4121/wawali/2017', '2017-12-06', 'pdam', 'wawali', 'air', '2017-4523.pdf', 'admin', '2017-12-06 07:15:07', 'WAKIL WALIKOTA', '2017-12-14 08:14:00', 'ADM.PEMB', '2017-12-12 08:14:00', 'PEM-OTDA', '2017-12-13 08:15:00'),
+(36, '2021-10-17 21:07:00', '1', '4524', '1', '2021-10-17', '1', '1', '1', '2021-4524.pdf', 'admin', '2021-10-28 21:23:04', 'WALIKOTA', '1970-01-01 07:00:00', 'UMUM', '1970-01-01 07:00:00', '', '1970-01-01 07:00:00'),
+(37, '2021-10-17 21:09:00', '1', '4525', '1', '2021-10-17', '1', '1', '1', '2021-4525.pdf', 'admin', '2021-10-17 21:10:12', '', '1970-01-01 07:00:00', '', '1970-01-01 07:00:00', '', '1970-01-01 07:00:00'),
+(38, '2021-10-17 21:11:00', '1', '4526', '1', '2021-10-17', '1', '1', '1', '2021-4526.pdf', 'admin', '2021-10-17 21:11:26', '', '1970-01-01 07:00:00', '', '1970-01-01 07:00:00', '', '1970-01-01 07:00:00');
 
 --
 -- Indexes for dumped tables
@@ -172,11 +250,31 @@ ALTER TABLE `tb_admin`
   ADD UNIQUE KEY `username_admin` (`username_admin`);
 
 --
+-- Indexes for table `tb_arsip_suratkeluar`
+--
+ALTER TABLE `tb_arsip_suratkeluar`
+  ADD PRIMARY KEY (`id_arsipkeluar`),
+  ADD UNIQUE KEY `id_suratkeluar` (`id_suratkeluar`);
+
+--
+-- Indexes for table `tb_arsip_suratmasuk`
+--
+ALTER TABLE `tb_arsip_suratmasuk`
+  ADD PRIMARY KEY (`id_arsipmasuk`),
+  ADD UNIQUE KEY `id_suratmasuk` (`id_suratmasuk`);
+
+--
 -- Indexes for table `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
   ADD PRIMARY KEY (`id_bagian`),
   ADD UNIQUE KEY `username_admin_bagian` (`username_admin_bagian`);
+
+--
+-- Indexes for table `tb_disposisi`
+--
+ALTER TABLE `tb_disposisi`
+  ADD PRIMARY KEY (`id_disposisi`);
 
 --
 -- Indexes for table `tb_suratkeluar`
@@ -201,21 +299,44 @@ ALTER TABLE `tb_suratmasuk`
 --
 ALTER TABLE `tb_admin`
   MODIFY `id_admin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_arsip_suratkeluar`
+--
+ALTER TABLE `tb_arsip_suratkeluar`
+  MODIFY `id_arsipkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_arsip_suratmasuk`
+--
+ALTER TABLE `tb_arsip_suratmasuk`
+  MODIFY `id_arsipmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
-  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `tb_disposisi`
+--
+ALTER TABLE `tb_disposisi`
+  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `tb_suratkeluar`
 --
 ALTER TABLE `tb_suratkeluar`
-  MODIFY `id_suratkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id_suratkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+
 --
 -- AUTO_INCREMENT for table `tb_suratmasuk`
 --
 ALTER TABLE `tb_suratmasuk`
-  MODIFY `id_suratmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_suratmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -397,4 +397,10 @@ class Admin extends CI_Controller{
     {
         $this->arsipsuratkeluar_model->delete();
     }
+
+    // PROFIL
+    public function profile()
+    {
+        $this->load->view('profil/profil_index');
+    }
 }

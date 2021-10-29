@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+if($this->session->userdata('v4lid') == "bagian"){
+  $this->session->set_flashdata('failed', 'Anda tidak punya hak akses');
+  redirect('admin');
+}
+?>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Arsip Surat Kota Samarinda </title>
+    <title>Arsip Surat SMK 10 November </title>
 
    <?php $this->load->view('templates/tem_header'); ?>
   </head>
