@@ -33,7 +33,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Surat Masuk</h3>
+                <h3>Surat Keluar</h3>
               </div>
             </div>
             <div class="clearfix"></div>
@@ -41,44 +41,51 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Surat Masuk ><small>Pesan Disposisi Surat Masuk</small></h2>
+                    <h2>Surat Keluar ><small>Edit Arsip Surat Keluar</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <br />
                     <?php
-                        $id = $_GET['id_suratmasuk'];
-                        $id_bagian = $this->session->userdata('id');
-                        $query = $this->db->query("SELECT * FROM tb_suratmasuk where id_suratmasuk = $id");
+                        $id_arsipkeluar = $_GET['id_arsipkeluar'];
+                        $query = $this->db->query("SELECT * FROM tb_suratkeluar inner join tb_arsip_suratkeluar using(id_suratkeluar) where tb_arsip_suratkeluar.id_arsipkeluar = $id_arsipkeluar");
                         $data = $query->row_array();
-                        $query2 = $this->db->query("SELECT * FROM tb_disposisi where id_suratmasuk = $id and id_bagian=$id_bagian");
-                        // var_dump($query2);
-                        $num = $query->num_rows();
-                        if($num > 0){
-                          $data2 = $query2->row_array();
-                        }
                     ?>
-                    <form action="<?=base_url('admin/add_disposisi_suratmasuk')?>"  name="formsuratmasuk" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                      <input type="hidden" id="id_suratmasuk" name="id_suratmasuk" value="<?= $data['id_suratmasuk'] ?>" />
+                    <form action="<?=base_url('admin/update_arsip_suratkeluar')?>"  name="formsuratkeluar" method="post" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                      <input type="hidden" id="id_arsipkeluar" name="id_arsipkeluar" value="<?= $data['id_arsipkeluar'] ?>" />
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nomor Surat <span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" id="nomor_suratmasuk" name="nomor_suratmasuk" required="required" maxlength="35" placeholder="Masukkan Nomor Surat" class="form-control col-md-7 col-xs-12" value="<?=$data['nomor_suratmasuk']?>" readonly>
+                          <input type="text" id="nomor_suratkeluar" name="nomor_suratkeluar" required="required" maxlength="35" placeholder="keluarkan Nomor Surat" class="form-control col-md-7 col-xs-12" value="<?=$data['nomor_suratkeluar']?>" readonly>
                         </div>
                       </div>
                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pesan <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No Box <span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <textarea type="text" id="pesan" name="pesan" required="required" placeholder="Masukkan Pesan" class="form-control col-md-7 col-xs-12"><?php if($num > 0 && $data2 != null){echo $data2['pesan'];} ?></textarea>
+                          <input type="text" id="no_box" name="no_box" required="required" placeholder="keluarkan No Box Surat" value="<?= $data['no_box'] ?>" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No Rak <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" id="no_rak" name="no_rak" required="required" placeholder="keluarkan No Rak Surat" value="<?= $data['no_rak'] ?>" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No Fisis <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" id="no_fisis" name="no_fisis" required="required" placeholder="keluarkan No Fisis Surat" value="<?= $data['no_fisis'] ?>" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <a href="<?= base_url('admin/suratmasuk')?>" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Batal</a>
+                          <a href="<?= base_url('admin/arsip_suratkeluar')?>" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Batal</a>
                           <button type="submit" name="input" value="Simpan" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Simpan</button>
                         </div>
                       </div>

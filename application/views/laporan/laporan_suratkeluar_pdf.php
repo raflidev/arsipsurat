@@ -37,7 +37,7 @@
             $date = "01-".$_GET['bulan']."-2020";
         ?>
         <div style="text-align:center">
-            <h3>LAPORAN SURAT MASUK 
+            <h3>LAPORAN SURAT KELUAR 
                 <br>Surat Menyurat dan Kearsipan SMK 10 November
                 <br><?= date('F', strtotime($date)) ?> <?= $_GET['tahun']; ?>
             </h3>

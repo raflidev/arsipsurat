@@ -10,6 +10,7 @@ class Admin extends CI_Controller{
         $this->load->model("suratmasuk_model");
         $this->load->model("suratkeluar_model");
         $this->load->model("arsipsuratmasuk_model");
+        $this->load->model("arsipsuratkeluar_model");
         $this->load->model("bagian_model");
     }
 
@@ -205,7 +206,6 @@ class Admin extends CI_Controller{
         $bulan = $_GET['bulan'];
         $tahun = $_GET['tahun'];
         $data['suratmasuk'] = $this->db->query("select * from tb_suratmasuk where month(tanggalmasuk_suratmasuk) = ".$bulan." and year(tanggalmasuk_suratmasuk) = ".$tahun." order by id_suratmasuk asc");
-        // var_dump($query);
 
         $this->load->library('pdf');
     
@@ -214,40 +214,6 @@ class Admin extends CI_Controller{
         $this->pdf->load_view('laporan/laporan_suratmasuk_pdf', $data);
     }
 
-    public function laporan_suratmasuk_excel()
-    {
-        $bulan = $_GET['bulan'];
-        $tahun = $_GET['tahun'];
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Tanggal Masuk');
-        $sheet->setCellValue('C1', 'Kode');
-        $sheet->setCellValue('D1', 'Pengirim');
-        $sheet->setCellValue('E1', 'Nomor Surat');
-        $sheet->setCellValue('F1', 'Kepada');
-
-        $no = 1;
-        $x = 2;
-        $query = $this->db->query("select * from tb_suratmasuk where month(tanggalmasuk_suratmasuk) = ".$bulan." and year(tanggalmasuk_suratmasuk) = ".$tahun." order by id_suratmasuk asc");
-        foreach($query->result() as $row) {
-            $sheet->setCellValue('A'.$x, $no++);
-            $sheet->setCellValue('B'.$x, date("d-m-Y", strtotime($row->tanggalmasuk_suratmasuk)));
-            $sheet->setCellValue('C'.$x, $row->kode_suratmasuk);
-            $sheet->setCellValue('D'.$x, $row->pengirim);
-            $sheet->setCellValue('E'.$x, $row->nomor_suratmasuk);
-            $sheet->setCellValue('F'.$x, $row->kepada_suratmasuk);
-            $x++;
-        }
-        $writer = new Xlsx($spreadsheet);
-        $filename = "suratmasuk-$tahun-$bulan";
-        
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-        header('Cache-Control: max-age=0');
-
-        $writer->save('php://output');
-    }
 
     public function laporan_suratkeluar()
     {
@@ -375,5 +341,60 @@ class Admin extends CI_Controller{
     public function detail_disposisi()
     {
         $this->load->view('disposisi/detail_disposisi_suratmasuk');
+    }
+
+    // ARSIP SURAT KELUAR
+    public function arsip_suratkeluar()
+    {
+        $this->load->view('arsip/arsip_suratkeluar');
+    }
+
+    public function input_arsip_suratkeluar()
+    {
+        $id = $_GET['id_suratkeluar'];
+        $query = $this->db->get_where("tb_arsip_suratkeluar", array('id_suratkeluar' => $id));
+        if($query->num_rows() > 0){
+            $this->session->set_flashdata("failed", "Surat sudah diarsipkan, silakan cek di menu arsip");
+            redirect('admin/suratkeluar');
+        }else{
+            $this->load->view('arsip/input_arsip_suratkeluar');
+        }
+
+    }
+
+    public function add_arsip_suratkeluar()
+    {
+        $query = $this->arsipsuratkeluar_model->save();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Arsip berhasil");
+            redirect('admin/suratkeluar');       
+        }else{
+            $db_error = $this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/suratkeluar');
+        }
+    }
+
+    public function edit_arsip_suratkeluar()
+    {
+        $this->load->view('arsip/edit_arsip_suratkeluar');
+    }
+
+    public function update_arsip_suratkeluar()
+    {
+        $query = $this->arsipsuratkeluar_model->update();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Arsip berhasil");
+            redirect('admin/arsip_suratkeluar');       
+        }else{
+            $db_error = $this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/arsip_suratkeluar');
+        }
+    }
+
+    public function delete_arsip_suratkeluar()
+    {
+        $this->arsipsuratkeluar_model->delete();
     }
 }

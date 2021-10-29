@@ -13,7 +13,6 @@
   <link href="<?=base_url('assets/vendors/jqvmap/dist/jqvmap.min.css"')?>" rel="stylesheet">
   <!-- bootstrap-daterangepicker -->
   <link href="<?=base_url('assets/vendors/bootstrap-daterangepicker/daterangepicker.css"')?>" rel="stylesheet">
-  <link rel="shortcut icon" href="../img/icon.ico">
 
   <!-- Select2 -->
   <link href="<?=base_url('assets/vendors/select2/dist/css/select2.min.css')?>" rel="stylesheet">
@@ -27,7 +26,7 @@
   <link href="<?=base_url('assets/vendors/starrr/dist/starrr.css')?>" rel="stylesheet">
   <!-- bootstrap-daterangepicker -->
   <link href="<?=base_url('assets/vendors/bootstrap-daterangepicker/daterangepicker.css')?>" rel="stylesheet">
-  <link rel="shortcut icon" href="../img/icon.ico">
+
 
     <!-- Datatables -->
     <link href="<?= base_url('assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>" rel="stylesheet">

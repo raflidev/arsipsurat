@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Arsip Surat Kota Samarinda </title>
+    <title>Arsip Surat SMK 10 November </title>
 
    <?php $this->load->view('templates/tem_header'); ?>
   </head>
@@ -81,27 +81,28 @@
                           <th width="10%">Bagian</th>
                           <th width="15%">Kepada</th>
                           <th width="21%">Perihal</th>
-                          <th width="14%">Aksi</th>
+                          <th width="10%">Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
                             <?php
-                            foreach($sql1->result_array() as $data){
-                              echo'<tr>
-                              <td>	'. $data['nomor_suratkeluar'].'  	</td>
-                              <td>	'. $data['tanggalkeluar_suratkeluar'].'		</td>
-                              <td>	'. $data['kode_suratkeluar'].'	</td>
-                              <td>	'. $data['tanggalsurat_suratkeluar'].'  		</td>
-                              <td>	'. $data['nama_bagian'].'  		</td>
-                              <td>	'. $data['kepada_suratkeluar'].'		</td>
-                              <td>  '. $data['perihal_suratkeluar'].'  </td> 
+                            foreach($sql1->result_array() as $data){?>
+                              <tr>
+                              <td>	<?= $data['nomor_suratkeluar']?>  	</td>
+                              <td>	<?= $data['tanggalkeluar_suratkeluar']?>		</td>
+                              <td>	<?= $data['kode_suratkeluar']?>	</td>
+                              <td>	<?= $data['tanggalsurat_suratkeluar']?>  		</td>
+                              <td>	<?= $data['nama_bagian']?>  		</td>
+                              <td>	<?= $data['kepada_suratkeluar']?>		</td>
+                              <td>  <?= $data['perihal_suratkeluar']?>  </td> 
                               <td style="text-align:center;">
-                              <a href= '.base_url('public/surat_keluar/').$data['file_suratkeluar'].'><button type="button" title="Unduh File" class="btn btn-success btn-xs"><i class="fa fa-download"></i></button></a>
-                              <a href='.base_url('admin/detail_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Detail" class="btn btn-info btn-xs"><i class="fa fa-file-image-o"></i></button></a>
-                              <a href='.base_url('admin/edit_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button></a>
-                              <a onclick="return konfirmasi()" href='.base_url('admin/delete_suratkeluar').'?id_suratkeluar='.$data['id_suratkeluar'].'><button type="button" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></a></td>
-                              </tr>';
-                            }
+                              <a href= <?=base_url('public/surat_keluar/').$data['file_suratkeluar']?>><button type="button" title="Unduh File" class="btn btn-success btn-xs"><i class="fa fa-download"></i></button></a>
+                              <a href=<?=base_url('admin/detail_suratkeluar')?>?id_suratkeluar=<?=$data['id_suratkeluar']?>><button type="button" title="Detail" class="btn btn-info btn-xs"><i class="fa fa-file-image-o"></i></button></a>
+                              <a href=<?= base_url('admin/input_arsip_suratkeluar');?>?id_suratkeluar=<?= $data['id_suratkeluar'];?>><button type="button" title="Arsipkan" class="btn btn-default btn-xs"><i class="fa fa-archive"></i></button></a>
+                              <a href=<?=base_url('admin/edit_suratkeluar')?>?id_suratkeluar=<?=$data['id_suratkeluar']?>><button type="button" title="Edit" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></button></a>
+                              <a onclick="return konfirmasi()" href=<?=base_url('admin/delete_suratkeluar')?>?id_suratkeluar=<?=$data['id_suratkeluar']?>><button type="button" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button></a></td>
+                              </tr>
+                            <?php }
                             ?>
                       </tbody>
                     </table>

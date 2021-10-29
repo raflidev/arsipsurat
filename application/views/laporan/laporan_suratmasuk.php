@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Arsip Surat Kota Samarinda </title>
+    <title>Arsip Surat SMK 10 November </title>
 
    <?php $this->load->view('templates/tem_header'); ?>
   </head>
@@ -117,8 +117,6 @@
                   <?php
                   if($bulan != 0 && $tahun != 0 && $total != 0){ ?>
                       <a href="<?= base_url('admin/laporan_suratmasuk_pdf?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
-                      <a href="<?= base_url('admin/laporan_suratmasuk_excel?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan Excel</a></a>
-
                     <?php }
                     ?>
 

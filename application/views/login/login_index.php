@@ -7,10 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Arsip Surat Kota Samarinda</title>
+    <title>Arsip Surat SMK 10 November </title>
 
     <?php $this->load->view('templates/tem_header'); ?>
-    <link rel="shortcut icon" href="../../img/icon.ico">
   </head>
 
   <body class="login">

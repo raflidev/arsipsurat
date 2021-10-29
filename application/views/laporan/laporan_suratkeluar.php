@@ -106,18 +106,17 @@
                                 } else {
                                   echo "<option selected disabled hidden>Pilih Tahun </option>";
                                 } 
-                                for ($tahun=2017;$tahun<=date("Y");$tahun++)
+                                for ($thn=2017;$thn<=date("Y");$thn++)
                                       {
-                                       echo  '<option value="'.$tahun.'">'.$tahun.'</option>';
+                                       echo  '<option value="'.$thn.'">'.$thn.'</option>';
                                       }
                             ?>
                           </select>
                         </div>
                   <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Filter</button></a>
                   <?php
-                    if($bulan != 0 && $tahun != 0){ ?>
+                    if($bulan != 0 && $tahun != 0 && $total != 0){ ?>
                       <a href="<?= base_url('admin/laporan_suratkeluar_pdf?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
-                      <a href="<?= base_url('admin/laporan_suratkeluar_excel?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan Excel</a></a>
 
                     <?php }
                     ?>
