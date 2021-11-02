@@ -42,3 +42,8 @@
 
   <!-- Custom Theme Style -->
   <link href="<?=base_url('assets/build/css/custom.min.css"')?>" rel="stylesheet">
+  <style>
+        .login{
+            background-color: "red";
+        }
+    </style>

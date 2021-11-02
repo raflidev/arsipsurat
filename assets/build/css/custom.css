@@ -3484,7 +3484,8 @@ form:after {
     position: relative;
     text-align: center;
     text-shadow: 0 1px 0 #fff;
-    min-width: 280px
+    min-width: 280px;
+    background-color: white;padding: 20px;
 }
 .login_content a,
 .login_content .btn-default:hover {

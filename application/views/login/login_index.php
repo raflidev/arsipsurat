@@ -12,13 +12,13 @@
     <?php $this->load->view('templates/tem_header'); ?>
   </head>
 
-  <body class="login">
+  <body class="login-background" style="background-image:url('<?= base_url("public/assets/banner-siswa.jpg") ?>'); height: 630px;background-size: cover;">
     <div>
       <a class="hiddenanchor" id="signin"></a>
 
       <div class="login_wrapper">
         <div class="animate form login_form">
-          <section class="login_content">
+          <section class="login_content" style="padding:20px;background-color:#fff;border-radius:7px">
               <?php
                 if (isset($_SESSION['failed'])) {
                   echo "<div class='alert alert-danger text-danger'>".$_SESSION['failed']."</div>";
