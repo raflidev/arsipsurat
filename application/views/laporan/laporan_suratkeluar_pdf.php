@@ -82,8 +82,9 @@ if($this->session->userdata('v4lid') == "bagian"){
         <?php 
         
         // Mengubah base64 ke gambar
-
-        $path = base_url('public/assets/ttd.png');
+        $query = $this->db->query("SELECT * from tb_tu limit 1");
+        $data_query = $query->row_array();
+        $path = base_url('public/assets/ttd/'.$data_query['ttd']);
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
@@ -95,7 +96,7 @@ if($this->session->userdata('v4lid') == "bagian"){
               Ka. Prog. Tata Usaha</p>
               <img src="<?=$base64?>" width="150" alt="">
               <br>
-              <span>Isnan Akbar, A.Md.,</span>
+              <span><?= $data_query['nama_tu'] ?></span>
           </div>
         </div>
     </body>

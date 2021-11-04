@@ -12,6 +12,8 @@ class Admin extends CI_Controller{
         $this->load->model("arsipsuratmasuk_model");
         $this->load->model("arsipsuratkeluar_model");
         $this->load->model("bagian_model");
+        $this->load->model("admin_model");
+        $this->load->model("tu_model");
     }
 
     /**
@@ -402,5 +404,82 @@ class Admin extends CI_Controller{
     public function profile()
     {
         $this->load->view('profil/profil_index');
+    }
+
+
+    // ADMIN
+
+    public function admin()
+    {
+        $this->load->view('data_admin/index_admin');
+    }
+
+    public function input_admin()
+    {
+        $this->load->view('data_admin/input_admin');
+    }
+
+    public function add_admin()
+    {
+        $query = $this->admin_model->save();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Data berhasil di Input");
+            redirect('admin/admin');       
+        }else{
+            $db_error = $this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/admin');       
+
+        }
+    }
+
+    public function edit_admin()
+    {
+        $this->load->view('data_admin/edit_admin');
+    }
+
+    public function update_admin()
+    {
+        $query = $this->admin_model->update();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Data berhasil di Edit");
+            redirect('admin/admin');       
+        }else{
+            $db_error =$this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/admin');       
+
+        }
+    }
+
+    public function delete_admin()
+    {
+        $this->admin_model->delete();
+    }
+
+    // KEPALA SEKOLAH
+
+    public function tu()
+    {
+        $this->load->view('tu/index_tu');
+    }
+
+    public function edit_tu()
+    {
+        $this->load->view('tu/edit_tu');
+    }
+
+    public function update_tu()
+    {
+        $query = $this->tu_model->update();
+        if ($query == true) {
+            $this->session->set_flashdata("success","Data berhasil di Edit");
+            redirect('admin/tu');       
+        }else{
+            $db_error =$this->db->error();
+            $this->session->set_flashdata("failed",$db_error['message']);
+            redirect('admin/tu');       
+
+        }
     }
 }

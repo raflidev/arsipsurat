@@ -52,9 +52,11 @@
                       <li><a href="<?= base_url('admin/laporan_suratkeluar') ?>"><i class="fa fa-send"></i>Surat Keluar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-users"></i> Bagian <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Pengguna <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?=base_url('admin/bagian')?>"><i class="fa  fa-inbox"></i>Data Bagian</a></li>
+                      <li><a href="<?=base_url('admin/admin')?>"><i class="fa  fa-inbox"></i>Data Admin</a></li>
+                      <li><a href="<?=base_url('admin/tu')?>"><i class="fa  fa-inbox"></i>Data Tata Usaha</a></li>
                     </ul>
                   </li>
                   <?php } ?>
