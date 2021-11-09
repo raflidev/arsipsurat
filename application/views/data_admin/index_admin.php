@@ -64,14 +64,14 @@ if($this->session->userdata('v4lid') == "bagian"){
                     <h2>Data ><small> Admin</small></h2>
                     <div class="clearfix"></div>
                   </div>
-                  <a href="<?= base_url('admin/input_admin') ?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Bagian</button></a>
+                  <a href="<?= base_url('admin/input_admin') ?>"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Admin</button></a>
                   <div class="x_content">
                   <div class="x_content">
                              <?php
                               $sql1  		=  $this->db->query("SELECT * FROM tb_admin order by id_admin asc");
                               $total		= $sql1->num_rows();
                               if ($total == 0) {
-                                echo"<center><h2>Belum Ada Data Bagian</h2></center>";
+                                echo"<center><h2>Belum Ada Data Admin</h2></center>";
                               }
                               else{?>
                     <table id="datatable" class="table table-striped table-bordered">

@@ -70,7 +70,7 @@ if($this->session->userdata('v4lid') == "bagian"){
                               $sql1  		=  $this->db->query("SELECT * FROM tb_tu order by id_tu asc");
                               $total		= $sql1->num_rows();
                               if ($total == 0) {
-                                echo"<center><h2>Belum Ada Data Bagian</h2></center>";
+                                echo"<center><h2>Belum Ada Data TU</h2></center>";
                               }
                               else{?>
                     <table id="datatable" class="table table-striped table-bordered">
