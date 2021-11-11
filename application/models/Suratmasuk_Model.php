@@ -21,7 +21,7 @@ class Suratmasuk_model extends CI_Model
         $kode_suratmasuk = $this->db->escape_str($post['kode_suratmasuk']);
         $nomorurut_suratmasuk = $this->db->escape_str($post['nomorurut_suratmasuk']);
         $nomor_suratmasuk = $this->db->escape_str($post['nomor_suratmasuk']);
-        $tanggalsurat_suratmasuk = $this->db->escape_str($post['tanggalsurat_suratmasuk']);
+        $tanggalsurat_suratmasuk = $this->db->escape_str($post['tanggal_suratmasuk']);
         $pengirim = $this->db->escape_str($post['pengirim']);
         $kepada_suratmasuk = $this->db->escape_str($post['kepada_suratmasuk']);
         $perihal_suratmasuk = $this->db->escape_str($post['perihal_suratmasuk']);
@@ -60,7 +60,7 @@ class Suratmasuk_model extends CI_Model
                 'kode_suratmasuk' => $kode_suratmasuk,
                 'nomorurut_suratmasuk' => $nomorurut_suratmasuk,
                 'nomor_suratmasuk' => $nomor_suratmasuk,
-                'tanggalsurat_suratmasuk' => $tgl_masuk,
+                'tanggalsurat_suratmasuk' => $tgl_surat,
                 'pengirim' => $pengirim,
                 'kepada_suratmasuk' => $kepada_suratmasuk,
                 'perihal_suratmasuk' => $perihal_suratmasuk,
@@ -88,7 +88,7 @@ class Suratmasuk_model extends CI_Model
         $kode_suratmasuk = $this->db->escape_str($post['kode_suratmasuk']);
         $nomorurut_suratmasuk = $this->db->escape_str($post['nomorurut_suratmasuk']);
         $nomor_suratmasuk = $this->db->escape_str($post['nomor_suratmasuk']);
-        $tanggalsurat_suratmasuk = $this->db->escape_str($post['tanggalsurat_suratmasuk']);
+        $tanggalsurat_suratmasuk = $this->db->escape_str($post['tanggal_suratmasuk']);
         $pengirim = $this->db->escape_str($post['pengirim']);
         $kepada_suratmasuk = $this->db->escape_str($post['kepada_suratmasuk']);
         $perihal_suratmasuk = $this->db->escape_str($post['perihal_suratmasuk']);
@@ -128,7 +128,7 @@ class Suratmasuk_model extends CI_Model
                 'kode_suratmasuk' => $kode_suratmasuk,
                 'nomorurut_suratmasuk' => $nomorurut_suratmasuk,
                 'nomor_suratmasuk' => $nomor_suratmasuk,
-                'tanggalsurat_suratmasuk' => $tgl_masuk,
+                'tanggalsurat_suratmasuk' => $tgl_surat,
                 'pengirim' => $pengirim,
                 'kepada_suratmasuk' => $kepada_suratmasuk,
                 'perihal_suratmasuk' => $perihal_suratmasuk,

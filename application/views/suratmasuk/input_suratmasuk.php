@@ -109,7 +109,7 @@ if($this->session->userdata('v4lid') == "bagian"){
                         <fieldset>
                           <div class="control-group">
                             <div class="controls">
-                                <input type="text" class="form-control has-feedback-left" id="single_cal3" name="tanggalsurat_suratmasuk" placeholder="First Name" aria-describedby="inputSuccess2Status3" required="required" readonly="readonly">
+                                <input type="text" class="form-control has-feedback-left" id="single_cal3" name="tanggal_suratmasuk" placeholder="First Name" aria-describedby="inputSuccess2Status3" required="required" readonly="readonly">
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                             </div>
