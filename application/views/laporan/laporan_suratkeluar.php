@@ -65,64 +65,40 @@ if($this->session->userdata('v4lid') == "bagian"){
                     <div class="clearfix"></div>
                   </div>
                   <?php
-                    $bulan = (isset($_GET['bulan'])) ?  $_GET['bulan'] : 0;
-                    $tahun = (isset($_GET['tahun'])) ?  $_GET['tahun'] : 0;
-                    if(isset($bulan) && isset($tahun)){
-                      $sql1  		= $this->db->query("SELECT * FROM tb_suratkeluar where month(tanggalkeluar_suratkeluar) = ".$bulan." and year(tanggalkeluar_suratkeluar) = ".$tahun." order by id_suratkeluar asc");
+                    $from = isset($_GET['from']) ?  (date('Y-m-d', strtotime($_GET['from']))) : 0;
+                    $to = isset($_GET['to']) ?  (date('Y-m-d', strtotime($_GET['to']))) : 0;
+                    if(isset($from) && isset($to)){
+                      $sql1  		= $this->db->query("SELECT * FROM tb_suratkeluar where tanggalkeluar_suratkeluar between '$from' and '$to' order by id_suratkeluar asc");
                       $total		= $sql1->num_rows();
                     }
                   ?>
-                  <!-- downloadlaporan_suratmasuk.php -->
                       <form action="<?= base_url('admin/laporan_suratkeluar') ?>"  name="download_suratmasuk" method="get" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                         <div class="col-md-2 col-sm-2 col-xs-6">
-                        <select name="bulan" class="select2_single form-control" tabindex="-1">
-                            <?php
-                              $array_bulan = array(
-                                "01" => "Januari",
-                                "02" => "Februari",
-                                "03" => "Maret",
-                                "04" => "April",
-                                "05" => "Mei",
-                                "06" => "Juni",
-                                "07" => "Juli",
-                                "08" => "Agustus",
-                                "09" => "September",
-                                "10" => "Oktober",
-                                "11" => "November",
-                                "12" => "Desember"
-                              );
-
-                              if(isset($_GET['bulan']) && isset($_GET['tahun'])){
-                              echo "<option value='".$bulan."' hidden>".$array_bulan[$bulan]."</option>";
-                              } else {
-                                echo "<option selected disabled hidden>Pilih Bulan</option>";
-                              } ?>
-                            <?php
-                              foreach ($array_bulan as $data => $value) {
-                                echo "<option value='".$data."'>".$value."</option>";
-                              }
-                            ?>
-                          </select>
+                        <fieldset>
+                            <div class="control-group">
+                              <div class="controls">
+                                  <input type="text" value="<?= (isset($_GET['from'])) ? $_GET['from'] : date("m/d/Y")?>" class="form-control has-feedback-left" value="11/14/2001" id="single_cal3" name="from" aria-describedby="inputSuccess2Status3">
+                                  <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                  <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                              </div>
+                            </div>
+                          </fieldset>
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-6">
-                          <select name="tahun" class="select2_single form-control" tabindex="-1">
-                            <?php
-                              if(isset($_GET['bulan']) && isset($_GET['tahun'])){
-                                echo "<option value='".$tahun."' hidden>".$tahun."</option>";
-                                } else {
-                                  echo "<option selected disabled hidden>Pilih Tahun </option>";
-                                } 
-                                for ($thn=2017;$thn<=date("Y");$thn++)
-                                      {
-                                       echo  '<option value="'.$thn.'">'.$thn.'</option>';
-                                      }
-                            ?>
-                          </select>
+                        <fieldset>
+                            <div class="control-group">
+                              <div class="controls">
+                                  <input type="text" value="<?= (isset($_GET['to'])) ? $_GET['to'] : date("m/d/Y")?>" class="form-control has-feedback-left" id="single_cal4" name="to" aria-describedby="inputSuccess2Status4">
+                                  <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                  <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                              </div>
+                            </div>
+                          </fieldset>
                         </div>
                   <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Filter</button></a>
                   <?php
-                    if($bulan != 0 && $tahun != 0 && $total != 0){ ?>
-                      <a href="<?= base_url('admin/laporan_suratkeluar_pdf?bulan='.$bulan.'&tahun='.$tahun.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
+                    if($total != 0){ ?>
+                      <a href="<?= base_url('admin/laporan_suratkeluar_pdf?from='.$from.'&to='.$to.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
 
                     <?php }
                     ?>

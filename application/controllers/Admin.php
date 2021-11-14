@@ -205,9 +205,9 @@ class Admin extends CI_Controller{
 
     public function laporan_suratmasuk_pdf()
     {
-        $bulan = $_GET['bulan'];
-        $tahun = $_GET['tahun'];
-        $data['suratmasuk'] = $this->db->query("select * from tb_suratmasuk where month(tanggalmasuk_suratmasuk) = ".$bulan." and year(tanggalmasuk_suratmasuk) = ".$tahun." order by id_suratmasuk asc");
+        $from = date('Y-m-d', strtotime($_GET['from']));
+        $to = date('Y-m-d', strtotime($_GET['to']));
+        $data['suratmasuk'] = $this->db->query("SELECT * FROM tb_suratmasuk where tanggalmasuk_suratmasuk between '$from' and '$to' order by id_suratmasuk asc");
 
         $this->load->library('pdf');
     
@@ -224,9 +224,9 @@ class Admin extends CI_Controller{
 
     public function laporan_suratkeluar_pdf()
     {
-        $bulan = $_GET['bulan'];
-        $tahun = $_GET['tahun'];
-        $data['suratkeluar'] = $this->db->query("SELECT * FROM tb_suratkeluar where month(tanggalkeluar_suratkeluar) = ".$bulan." and year(tanggalkeluar_suratkeluar) = ".$tahun." order by id_suratkeluar asc");
+        $from = date('Y-m-d', strtotime($_GET['from']));
+        $to = date('Y-m-d', strtotime($_GET['to']));
+        $data['suratkeluar'] = $this->db->query("SELECT * FROM tb_suratkeluar where tanggalkeluar_suratkeluar between '$from' and '$to' order by id_suratkeluar asc");
 
         $this->load->library('pdf');
     

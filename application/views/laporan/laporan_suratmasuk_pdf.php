@@ -39,13 +39,10 @@ if($this->session->userdata('v4lid') == "bagian"){
         </style>
     </head>
     <body>
-        <?php
-            $date = "01-".$_GET['bulan']."-2020";
-        ?>
         <div style="text-align:center">
             <h3>LAPORAN SURAT MASUK 
                 <br>Surat Menyurat dan Kearsipan SMK 10 November
-                <br><?= date('F', strtotime($date)) ?> <?= $_GET['tahun']; ?>
+                <br><?= date('d F Y', strtotime($_GET['from'])) ?> -  <?= date('d F Y', strtotime($_GET['to'])) ?>
             </h3>
         </div>
         <table id="table">
