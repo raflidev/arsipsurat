@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     '320cde22f66dd4f5d3fd621d3e88b98f' => $vendorDir . '/symfony/polyfill-ctype/bootstrap.php',
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
+    '2cffec82183ee1cea088009cef9a6fc3' => $vendorDir . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
     'abede361264e2ae69ec1eee813a101af' => $vendorDir . '/markbaker/complex/classes/src/functions/abs.php',
     '21a5860fbef5be28db5ddfbc3cca67c4' => $vendorDir . '/markbaker/complex/classes/src/functions/acos.php',
     '1546e3f9d127f2a9bb2d1b6c31c26ef1' => $vendorDir . '/markbaker/complex/classes/src/functions/acosh.php',
@@ -66,6 +67,5 @@ return array(
     '8d37dad4703fab45bfec9dd0bbf3278e' => $vendorDir . '/markbaker/matrix/classes/src/Operations/multiply.php',
     '4888a6f58c08148ebe17682f9ce9b2a8' => $vendorDir . '/markbaker/matrix/classes/src/Operations/divideby.php',
     'eef6fa3879d3efa347cd24d5eb348f85' => $vendorDir . '/markbaker/matrix/classes/src/Operations/divideinto.php',
-    '2cffec82183ee1cea088009cef9a6fc3' => $vendorDir . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
     '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
 );
