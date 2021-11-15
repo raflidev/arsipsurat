@@ -206,7 +206,7 @@ class Admin extends CI_Controller{
     public function laporan_suratmasuk_pdf()
     {
         $from = date('Y-m-d', strtotime($_GET['from']));
-        $to = date('Y-m-d', strtotime($_GET['to']));
+        $to = date('Y-m-d', strtotime($_GET['to']) + 86400);
         $data['suratmasuk'] = $this->db->query("SELECT * FROM tb_suratmasuk where tanggalmasuk_suratmasuk between '$from' and '$to' order by id_suratmasuk asc");
 
         $this->load->library('pdf');
@@ -225,7 +225,7 @@ class Admin extends CI_Controller{
     public function laporan_suratkeluar_pdf()
     {
         $from = date('Y-m-d', strtotime($_GET['from']));
-        $to = date('Y-m-d', strtotime($_GET['to']));
+        $to = date('Y-m-d', strtotime($_GET['to']) + 86400);
         $data['suratkeluar'] = $this->db->query("SELECT * FROM tb_suratkeluar where tanggalkeluar_suratkeluar between '$from' and '$to' order by id_suratkeluar asc");
 
         $this->load->library('pdf');
