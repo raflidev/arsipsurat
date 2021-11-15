@@ -66,7 +66,7 @@ if($this->session->userdata('v4lid') == "bagian"){
                   </div>
                   <?php
                     $from = isset($_GET['from']) ?  (date('Y-m-d', strtotime($_GET['from']))) : 0;
-                    $to = isset($_GET['to']) ?  (date('Y-m-d', strtotime($_GET['to']))) : 0;
+                    $to = isset($_GET['to']) ?  (date('Y-m-d', strtotime($_GET['to']) + 86400)) : 0;
                     
                     if(isset($from) && isset($to)){
                       $sql1  		= $this->db->query("SELECT * FROM tb_suratmasuk where tanggalmasuk_suratmasuk between '$from' and '$to' order by id_suratmasuk asc");
