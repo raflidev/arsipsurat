@@ -114,10 +114,11 @@ if($this->session->userdata('v4lid') == "bagian"){
                             </div>
                           </fieldset>
                         </div>
-                  <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Filter</button></a>
+                  <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Filter</button></a>
                   <?php
                   if($total != 0){ ?>
                       <a href="<?= base_url('admin/laporan_suratmasuk_pdf?from='.$from.'&to='.$to.'&tipe_tgl='.$tipe.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
+                      <a href="<?= base_url('admin/laporan_suratmasuk_excel?from='.$from.'&to='.$to.'&tipe_tgl='.$tipe.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan Excel</a></a>
                     <?php }
                     ?>
 
