@@ -207,13 +207,69 @@ class Admin extends CI_Controller{
     {
         $from = date('Y-m-d', strtotime($_GET['from']));
         $to = date('Y-m-d', strtotime($_GET['to']) + 86400);
-        $data['suratmasuk'] = $this->db->query("SELECT * FROM tb_suratmasuk where tanggalmasuk_suratmasuk between '$from' and '$to' order by id_suratmasuk asc");
+        $tipe = isset($_GET['tipe_tgl']) ? $_GET['tipe_tgl'] : 0;
+        $data['suratmasuk'] = $this->db->query("SELECT * FROM tb_suratmasuk where $tipe between '$from' and '$to' order by id_suratmasuk asc");
 
         $this->load->library('pdf');
     
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "laporan-SM.pdf";
         $this->pdf->load_view('laporan/laporan_suratmasuk_pdf', $data);
+    }
+
+    public function laporan_suratmasuk_excel()
+    {
+        $from = date('Y-m-d', strtotime($_GET['from']));
+        $to = date('Y-m-d', strtotime($_GET['to']) + 86400);
+        $tipe = isset($_GET['tipe_tgl']) ? $_GET['tipe_tgl'] : 0;
+        $data = $this->db->query("SELECT * FROM tb_suratmasuk where $tipe between '$from' and '$to' order by id_suratmasuk asc");
+
+        $spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+        $date = date('d F Y', strtotime($_GET['from']))." - ".date('d F Y', strtotime($_GET['to']));
+        $sheet->mergeCells('A1:H1');
+        $sheet->mergeCells('A2:H2');
+        $sheet->mergeCells('A3:H3');
+        $sheet->setCellValue('A1', 'LAPORAN SURAT MASUK');
+        $sheet->setCellValue('A2', 'Surat Menyurat dan Kearsipan SMK 10 November ');
+        $sheet->setCellValue('A3', $date);
+
+        $sheet->getStyle('A')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('E')->getAlignment()->setWrapText(true);
+        $sheet->getColumnDimension('E')->setAutoSize(true);
+        $sheet->getColumnDimension('H')->setAutoSize(true);
+
+        $sheet->setCellValue('A4', 'No');
+        $sheet->setCellValue('B4', 'Tanggal Masuk');
+        $sheet->setCellValue('C4', 'Tanggal Keluar');
+        $sheet->setCellValue('D4', 'Kode');
+        $sheet->setCellValue('E4', 'Pengirim');
+        $sheet->setCellValue('F4', 'No. Surat');
+        $sheet->setCellValue('G4', 'Kepada');
+        $sheet->setCellValue('H4', 'Perihal');
+        $no = 1;        
+        $excel_row = 5;
+        foreach($data->result() as $row) {
+            $sheet->setCellValue('A'.$excel_row, $no);
+            $sheet->setCellValue('B'.$excel_row, date("d-m-Y", strtotime($row->tanggalmasuk_suratmasuk)));
+            $sheet->setCellValue('C'.$excel_row, date("d-m-Y", strtotime($row->tanggalsurat_suratmasuk)));
+            $sheet->setCellValue('D'.$excel_row, $row->kode_suratmasuk);
+            $sheet->setCellValue('E'.$excel_row, $row->pengirim);
+            $sheet->setCellValue('F'.$excel_row, $row->nomor_suratmasuk);
+            $sheet->setCellValue('G'.$excel_row, $row->kepada_suratmasuk);
+            $sheet->setCellValue('H'.$excel_row, $row->perihal_suratmasuk);
+            $no++;
+            $excel_row++;
+        }
+        
+        $writer = new Xlsx($spreadsheet);
+        $filename = 'laporan-Suratmasuk';
+        
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
     }
 
 
@@ -226,7 +282,8 @@ class Admin extends CI_Controller{
     {
         $from = date('Y-m-d', strtotime($_GET['from']));
         $to = date('Y-m-d', strtotime($_GET['to']) + 86400);
-        $data['suratkeluar'] = $this->db->query("SELECT * FROM tb_suratkeluar where tanggalkeluar_suratkeluar between '$from' and '$to' order by id_suratkeluar asc");
+        $tipe = isset($_GET['tipe_tgl']) ? $_GET['tipe_tgl'] : 0;
+        $data['suratkeluar'] = $this->db->query("SELECT * FROM tb_suratkeluar where $tipe between '$from' and '$to' order by id_suratkeluar asc");
 
         $this->load->library('pdf');
     

@@ -49,7 +49,8 @@ if($this->session->userdata('v4lid') == "bagian"){
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Tanggal Masuk</th>
+                    <th>Tanggal Keluar</th>
+                    <th>Tanggal Surat</th>
                     <th>Kode</th>
                     <th>Nama Bagian</th>
                     <th>Nomor Surat</th>
@@ -64,6 +65,7 @@ if($this->session->userdata('v4lid') == "bagian"){
               <tr>
                 <td scope="row"><?= $no ?></td>
                 <td><?= date("d-m-Y", strtotime($data['tanggalkeluar_suratkeluar'])) ?></td>
+                <td><?= date("d-m-Y", strtotime($data['tanggalsurat_suratkeluar'])) ?></td>
                 <td><?= $data['kode_suratkeluar'] ?></td>
                 <td><?= $data['nama_bagian'] ?></td>
                 <td><?= $data['nomor_suratkeluar'] ?></td>

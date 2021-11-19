@@ -67,12 +67,31 @@ if($this->session->userdata('v4lid') == "bagian"){
                   <?php
                     $from = isset($_GET['from']) ?  (date('Y-m-d', strtotime($_GET['from']))) : 0;
                     $to = isset($_GET['to']) ?  (date('Y-m-d', strtotime($_GET['to']) + 86400)) : 0;
+                    $tipe = isset($_GET['tipe_tgl']) ? $_GET['tipe_tgl'] : 0;
+                    if(isset($_GET['tipe_tgl'])){
+                      $value_tipe = ($_GET['tipe_tgl'] == "tanggalsurat_suratkeluar") ? "Tanggal Surat" : "Tanggal Keluar";
+                      $value_tipe_x = ($_GET['tipe_tgl'] == "tanggalsurat_suratkeluar") ? "Tanggal Keluar" : "Tanggal Surat";
+                      
+                      $value_place_x = ($_GET['tipe_tgl'] == "tanggalkeluar_suratkeluar") ? "tanggalsurat_suratkeluar" : "tanggalkeluar_suratkeluar";
+                    }
                     if(isset($from) && isset($to)){
-                      $sql1  		= $this->db->query("SELECT * FROM tb_suratkeluar where tanggalkeluar_suratkeluar between '$from' and '$to' order by id_suratkeluar asc");
+                      $sql1  		= $this->db->query("SELECT * FROM tb_suratkeluar where $tipe between '$from' and '$to' order by id_suratkeluar asc");
                       $total		= $sql1->num_rows();
                     }
                   ?>
-                      <form action="<?= base_url('admin/laporan_suratkeluar') ?>"  name="download_suratmasuk" method="get" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                      <form action="<?= base_url('admin/laporan_suratkeluar') ?>"  name="download_suratkeluar" method="get" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                      <div class="col-md-2 col-sm-2 col-xs-6">
+                        <select class="form-control" name="tipe_tgl">
+                        <?php
+                            if(isset($_GET['tipe_tgl'])){?>
+                                <option value="<?= $_GET['tipe_tgl'] ?>"><?= $value_tipe ?></option>
+                                <option value="<?= $value_place_x ?>"><?= $value_tipe_x ?></option>
+                            <?php }else{ ?>
+                          <option value="tanggalkeluar_suratkeluar" selected="selected">Tanggal Keluar</option>
+                          <option value="tanggalsurat_suratkeluar">Tanggal Surat</option>
+                          <?php } ?>
+                        </select>
+                      </div>
                         <div class="col-md-2 col-sm-2 col-xs-6">
                         <fieldset>
                             <div class="control-group">
@@ -98,7 +117,7 @@ if($this->session->userdata('v4lid') == "bagian"){
                   <button type="submit" class="btn btn-success"><i class="fa fa-download"></i> Filter</button></a>
                   <?php
                     if($total != 0){ ?>
-                      <a href="<?= base_url('admin/laporan_suratkeluar_pdf?from='.$from.'&to='.$to.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
+                      <a href="<?= base_url('admin/laporan_suratkeluar_pdf?from='.$from.'&to='.$to.'&tipe_tgl='.$tipe.'') ?>" target="_blank"class="btn btn-success"><i class="fa fa-download"></i> Unduh Laporan PDF</a></a>
 
                     <?php }
                     ?>

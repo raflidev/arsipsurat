@@ -70,7 +70,7 @@ if($this->session->userdata('v4lid') == "bagian"){
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <input type="text" onkeyup="validAngka(this)" id="kode_suratkeluar" name="kode_suratkeluar" required="required" maxlength="7" placeholder="Masukkan Kode Surat" class="form-control col-md-7 col-xs-12">
-                          <br><a href= "file/kode_klasifikasi_surat.xlsx"><b>Lihat Kode Klasifikasi Surat</b></a></br>
+                          <br><a href= "<?= base_url('public/') ?>kode_klasifikasi_surat.xlsx"><b>Lihat Kode Klasifikasi Surat</b></a></br>
                         </div>
                       </div>
                       <?php 
